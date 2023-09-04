@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
 
 import { ThemeProvider } from '@/components/theme-provider';
+import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -20,8 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang='en' suppressHydrationWarning>
+      <html lang='en' suppressHydrationWarning={true}>
         <body
+          suppressHydrationWarning={true}
           className={cn('bg-secondary', inter.className)}
         >
           <ThemeProvider
@@ -30,6 +32,7 @@ export default function RootLayout({
             enableSystem
           >
             {children}
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>
